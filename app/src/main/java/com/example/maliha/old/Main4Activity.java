@@ -27,7 +27,7 @@ public class Main4Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main4);
         et = (EditText) findViewById(R.id.et);
 
-        b = (ImageButton) findViewById(R.id.btnadd); //save contact
+        b = (ImageButton) findViewById(R.id.btnadd); //add contact
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +37,7 @@ public class Main4Activity extends AppCompatActivity {
                     Toast.makeText(Main4Activity.this, "No Number Dialed", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Intent i = new Intent(Main4Activity.this, Main3Activity.class);
+                    Intent i = new Intent(Main4Activity.this,  Main3Activity.class); //send typed number to 3
                     i.putExtra("UserInput", str);
                     startActivity(i);
                 }

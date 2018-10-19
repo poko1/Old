@@ -19,42 +19,53 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/b1"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="95dp"
-            android:text="                       BRIDDHO"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
         <ImageButton
             android:id="@+id/btn1"
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
+            android:layout_width="300dp"
+            android:layout_height="95dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="80dp"
             android:scaleType="fitCenter"
+            android:visibility="visible"
             app:srcCompat="@android:drawable/sym_action_call" />
 
         <ImageButton
             android:id="@+id/btn2"
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
+            android:layout_width="300dp"
+            android:layout_height="95dp"
+            android:layout_marginBottom="10dp"
+
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:tint="#b90099cc"
             app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
         <ImageButton
             android:id="@+id/btn3"
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
+            android:layout_width="300dp"
+            android:layout_height="95dp"
+
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:tint="#b93f51b5"
             app:srcCompat="@android:drawable/ic_menu_search" />
 
         <ImageButton
             android:id="@+id/btn4"
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
+            android:layout_width="300dp"
+            android:layout_height="95dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="20dp"
+
             android:scaleType="fitCenter"
             android:tint="#b9783101"
             app:srcCompat="?attr/actionModePasteDrawable" />

@@ -1,8 +1,10 @@
 package com.example.maliha.old;
 
+
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -10,37 +12,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-/*class Person{
-    public String n;
-    public String p;
-    public Integer e;
-
-    public Person() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
-    }
-
-    public Person(String n, String p, Integer e) {
-        this.n = n;
-        this.p = p;
-        this.e = e;
-    }
-}*/
 public class Main3Activity extends AppCompatActivity {
+
+
 //code for saving new contact in fb
     private EditText et;
     private TextView tv;
     private CheckBox c;
     private Button sv;
-    String num,name;
+    String n,p,e,num;
+    Integer i;
     ////////
-    //private DatabaseReference rootRef,demoRef;
+    private Contact contact;
+    private DatabaseHelper db;
+    public static Main3Activity inst;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+        getSupportActionBar().setTitle("Add Contact");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        db = new DatabaseHelper(this);
         Intent Extra = getIntent();
         num = Extra.getStringExtra("UserInput");
 
@@ -51,39 +48,64 @@ public class Main3Activity extends AppCompatActivity {
         tv.setText(num);
 
 
-        //database reference pointing to root of database
-        //rootRef = FirebaseDatabase.getInstance().getReference();
-        //database reference pointing to demo node
-        //demoRef=rootRef.child("demo");
-
-        sv.setOnClickListener(new View.OnClickListener() {
+        sv.setOnClickListener(new View.OnClickListener() { //save contacts
             @Override
-            public void onClick(View v) {
-                //push creates a unique id in database
-                name = et.getText().toString();
-                //demoRef.push().setValue(name);
-                /*Integer t=0;
-                if(c.isChecked()){
-                    t=1;
-                }
-                Person person = new Person(name,num,t);
+            public void onClick(View v){
 
+                getAllInputData();
 
-                demoRef = rootRef.child("Person").push();
-                demoRef.setValue(person);*/
-                //Toast.makeText(Main3Activity.this, "SAVED", Toast.LENGTH_LONG).show();
+                createContact();
 
-            }
+                makeContact(contact);
+
+                 }
+
         });
 
 
 
-
-
-
-        ////create a new button with users name
-
-
-
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int id= item.getItemId();
+        if (id==android.R.id.home){
+            this.finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    void getAllInputData() {
+
+        if (c.isChecked()) {
+            e="1";
+        }
+        else{
+            e="0";
+        }
+
+        n = et.getText().toString();
+        p = tv.getText().toString();
+    }
+    void createContact() {
+        contact = new Contact(n, p, e);
+    }
+
+    public void makeContact(Contact contact) {
+        boolean insertData = db.addAppoint(contact);
+
+        if (insertData) {
+            toastMessage("Data Successfully Inserted!");
+            Intent intent = new Intent(Main3Activity.this, Main2Activity.class);
+            startActivity(intent);
+        } else {
+            toastMessage("Something went wrong");
+        }
+    }
+    private void toastMessage(String message){
+        Toast.makeText(this,message, Toast.LENGTH_LONG).show();
+    }
+
 }
